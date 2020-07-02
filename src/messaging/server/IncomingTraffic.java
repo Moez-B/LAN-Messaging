@@ -7,12 +7,9 @@ import java.net.Socket;
 public class IncomingTraffic extends Thread {
 
 	private Server server;
-	private ServerSocket socket;
-	
-	
+		
 	public IncomingTraffic(Server server, ServerSocket socket) {
 		this.server = server;
-		this.socket = socket;
 	}
 	
 	@Override
@@ -20,7 +17,7 @@ public class IncomingTraffic extends Thread {
 		Socket incoming = null;
 		while(true) {
 			try {
-				incoming = socket.accept();	
+				incoming = this.server.server.accept();	
 			}
 			catch(IOException e) {}
 			catch(NullPointerException ee) {System.out.println("No connection.");}

@@ -14,7 +14,7 @@ public class Server implements Runnable {
 	private List<Client> clients = new ArrayList<>();
 	public List<Socket> sockets = new ArrayList<>();
 	public int connections;
-	private ServerSocket server;
+	public ServerSocket server;
 	public IncomingTraffic in;
 	
 	public Server() {
@@ -28,6 +28,7 @@ public class Server implements Runnable {
 	
 	@Override
 	public void run() {
+		this.in.start();
 		while(true) {
 			System.out.println(sockets.size());
 			try {
@@ -49,9 +50,7 @@ public class Server implements Runnable {
 	
 	public static void main(String[] args) {
 		Server server = new Server();
-		server.in.start();
-		Thread userJoinThread = new Thread(server);
-		userJoinThread.start();
+		new Thread(server).start();
 	}
 	
 }
