@@ -30,7 +30,7 @@ public class Server implements Runnable {
 	public void run() {
 		this.in.start();
 		while(true) {
-			System.out.println(sockets.size());
+			System.out.println("Current Connections: " + sockets.size());
 			try {
 				Thread.sleep(250);	
 			}
@@ -41,9 +41,7 @@ public class Server implements Runnable {
 				++this.connections;
 				new UserJoinEventHandler(this,sockets.get(connections-1)).userJoinedEvent();
 			}
-			else {
-				System.out.println("no change");
-			}
+			else {}
 		}
 		
 	}

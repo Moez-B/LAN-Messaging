@@ -20,11 +20,10 @@ public class IncomingTraffic extends Thread {
 				incoming = this.server.server.accept();	
 			}
 			catch(IOException e) {}
-			catch(NullPointerException ee) {System.out.println("No connection.");}
+			catch(NullPointerException ee) {}
 			if(incoming != null) {
 				this.server.sockets.add(incoming);
 				incoming = null;
-				System.out.println("got it");
 			}
 			try {Thread.sleep(250);}
 			catch(InterruptedException e) {}
