@@ -11,7 +11,6 @@ import messaging.server.handlers.UserJoinEventHandler;
 
 public class Server implements Runnable {
 
-	private List<Client> clients = new ArrayList<>();
 	public List<Socket> sockets = new ArrayList<>();
 	public int connections;
 	public ServerSocket server;
