@@ -24,7 +24,6 @@ public class IncomingTraffic extends Thread {
 			if(incoming != null) {
 				this.server.sockets.add(incoming);
 				incoming = null;
-				System.out.println("got it");
 			}
 			try {Thread.sleep(250);}
 			catch(InterruptedException e) {}
