@@ -18,8 +18,8 @@ public class IncomingTraffic extends Thread {
 		Socket incoming = null;
 		while(true) {
 			try {
+				System.out.println("Waiting");
 				incoming = this.server.server.accept();	
-				System.out.println("got it");
 			}
 			catch(IOException e) {}
 			catch(NullPointerException ee) {}

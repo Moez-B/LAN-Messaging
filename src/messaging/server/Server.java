@@ -42,7 +42,7 @@ public class Server implements Runnable {
 			if(sockets.size() != connections) {
 				++this.connections;
 				
-				joinEventHandlers.add(new UserJoinEventHandler(this, packets.get(connections)));
+				joinEventHandlers.add(new UserJoinEventHandler(this, packets.get(connections-1)));
 				new Thread(joinEventHandlers.get(connections-1)).start();
 			}
 			else{}

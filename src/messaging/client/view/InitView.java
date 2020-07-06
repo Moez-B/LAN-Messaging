@@ -42,11 +42,10 @@ public class InitView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == this.cont && this.nameField.getText() != "") {
 			
-			Socket clientSocket = Client.connect();
-			
-			try {Thread.sleep(100);}
-			catch(InterruptedException e) {}
-			
+			Client client = new Client();
+			client.connect();
+			Socket clientSocket = client.socket;
+				
 			try {
 				ObjectOutputStream packetSender = new ObjectOutputStream(clientSocket.getOutputStream());
 				packetSender.writeObject(new JoinPacket(clientSocket, this.nameField.getText()));

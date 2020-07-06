@@ -6,18 +6,21 @@ import java.net.Socket;
 import messaging.client.view.InitView;
 
 public class Client {
+	
+	public Socket socket = null;
+	
 	public static void main(String[] args) {
 		InitView initial = new InitView();
 	}
 	
-	public static Socket connect() {
-		Socket socket = null;
+	public Client() {}
+	
+	public void connect() {
 		try {
-			socket = new Socket("localhost", 4765);
+			this.socket = new Socket("localhost", 4765);
 			System.out.println("Client request sent.");
 		}
 		catch(IOException e) {System.out.println("Couldn't connect.");}		
-		return socket;
 	}
 	
 }
