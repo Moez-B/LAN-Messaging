@@ -2,6 +2,8 @@ package messaging.client.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import javax.swing.BoxLayout;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import messaging.client.Client;
+import messaging.server.packets.JoinPacket;
 
 public class InitView extends JFrame implements ActionListener {
 	
@@ -38,7 +41,20 @@ public class InitView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == this.cont && this.nameField.getText() != "") {
+			
 			Socket clientSocket = Client.connect();
+			
+			try {Thread.sleep(100);}
+			catch(InterruptedException e) {}
+			
+			try {
+				ObjectOutputStream packetSender = new ObjectOutputStream(clientSocket.getOutputStream());
+				packetSender.writeObject(new JoinPacket(clientSocket, this.nameField.getText()));
+			}
+			catch(IOException e) {}
+			
+			
+			
 		}
 	}
 	

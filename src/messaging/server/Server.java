@@ -1,17 +1,20 @@
 package messaging.server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import messaging.client.Client;
 import messaging.server.handlers.UserJoinEventHandler;
 
 public class Server implements Runnable {
 
 	public List<Socket> sockets = new ArrayList<>();
+	public List<ObjectInputStream> packets = new ArrayList<>();
+	public List<UserJoinEventHandler> joinEventHandlers = new ArrayList<>();
+
 	public int connections;
 	public ServerSocket server;
 	public IncomingTraffic in;
@@ -38,7 +41,9 @@ public class Server implements Runnable {
 			//user join event
 			if(sockets.size() != connections) {
 				++this.connections;
-				new UserJoinEventHandler(this,sockets.get(connections-1)).userJoinedEvent();
+				
+				joinEventHandlers.add(new UserJoinEventHandler(this, packets.get(connections)));
+				new Thread(joinEventHandlers.get(connections-1)).start();
 			}
 			else{}
 		}

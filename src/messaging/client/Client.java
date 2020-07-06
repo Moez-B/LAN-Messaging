@@ -12,7 +12,10 @@ public class Client {
 	
 	public static Socket connect() {
 		Socket socket = null;
-		try {socket = new Socket("localhost", 4765);}
+		try {
+			socket = new Socket("localhost", 4765);
+			System.out.println("Client request sent.");
+		}
 		catch(IOException e) {System.out.println("Couldn't connect.");}		
 		return socket;
 	}
