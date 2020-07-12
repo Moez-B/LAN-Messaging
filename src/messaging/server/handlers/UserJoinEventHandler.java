@@ -26,7 +26,7 @@ public class UserJoinEventHandler extends Handler implements Runnable {
 			catch(Exception e) {}
 			
 			if(packet instanceof JoinPacket) {
-				System.out.println(packet.username + " has joined.");
+				System.out.println(packet.getUsername() + " has joined.");
 			}
 			else {
 				//if packet is a message packet

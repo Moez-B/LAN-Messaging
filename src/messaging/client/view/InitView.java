@@ -45,14 +45,14 @@ public class InitView extends JFrame implements ActionListener {
 			Client client = new Client();
 			client.connect();
 			Socket clientSocket = client.socket;
-				
+			
 			try {
 				ObjectOutputStream packetSender = new ObjectOutputStream(clientSocket.getOutputStream());
+				try {Thread.sleep(2000);}
+				catch(InterruptedException e) {}
 				packetSender.writeObject(new JoinPacket(clientSocket, this.nameField.getText()));
 			}
-			catch(IOException e) {}
-			
-			
+			catch(IOException e) {}		
 			
 		}
 	}

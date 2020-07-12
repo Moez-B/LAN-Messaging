@@ -27,7 +27,10 @@ public class IncomingTraffic extends Thread {
 			if(incoming != null) {
 				this.server.sockets.add(incoming);
 				
-				try{server.packets.add(new ObjectInputStream(incoming.getInputStream()));}
+				try{
+					server.packets.add(new ObjectInputStream(incoming.getInputStream()));
+					System.out.println("added user input stream");
+				}
 				catch(IOException e) {}
 				
 				incoming = null;
